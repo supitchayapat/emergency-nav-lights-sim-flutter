@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
             Container(
               margin: EdgeInsets.only(bottom: 16.0),
               child: Text(
-                "Select the color",
+                "Port | Stern | Starboard",
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 18.0),
               ),
@@ -28,16 +28,15 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 MaterialButton(
                     height: 80.0,
-                    color: Colors.red,
+                    color: Colors.deepOrangeAccent[700],
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LightPage(Colors.red)),
+                        MaterialPageRoute(builder: (context) => LightPage(Colors.deepOrangeAccent[700])), 
                       );
                     }),
                 MaterialButton(
                     height: 80.0,
-                    color: Colors.blue,
                     color: Colors.white,
                     onPressed: () {
                       Navigator.push(
@@ -47,11 +46,11 @@ class HomePage extends StatelessWidget {
                     }),
                 MaterialButton(
                     height: 80.0,
-                    color: Colors.green,
+                    color: Colors.lightGreenAccent[700],
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LightPage(Colors.green)),
+                        MaterialPageRoute(builder: (context) => LightPage(Colors.lightGreenAccent[700])),
                       );
                     }),
               ],
