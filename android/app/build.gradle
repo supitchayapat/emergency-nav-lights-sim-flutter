@@ -43,11 +43,16 @@ android {
     buildTypes {
         debug{
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "Light Sim Dev"]
+            manifestPlaceholders = [appName: "Emergency Nav Lights Sim Dev", appShortName: "Light Sim Dev"]
         }
         release {
-            manifestPlaceholders = [appName: "Light Sim"]
+            manifestPlaceholders = [appName: "Emergency Nav Lights Sim", appShortName: "Light Sim"]
             signingConfig signingConfigs.debug
+
+            minifyEnabled true
+            useProguard true
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
