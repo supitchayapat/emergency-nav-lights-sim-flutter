@@ -41,13 +41,12 @@ class SplashPageState extends State<SplashPage> {
       backgroundColor: Colors.white,
       body: InkWell(
         child: Stack(
-          children: <Widget>[
-            Center(
-                child: Column(
+          children: [
+            Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
+              children: [
                 Container(
-                  margin: EdgeInsets.all(12.0),
+                  margin: EdgeInsets.only(bottom: 12.0),
                   child: Text("EMERGENCY\nNAV LIGHTS\nSIMULATOR",
                       textAlign: TextAlign.center,
                       style: TextStyle(
@@ -57,9 +56,9 @@ class SplashPageState extends State<SplashPage> {
                 ),
                 Image.asset("assets/images/boat.png"),
               ],
-            )),
+            ),
             Container(
-                margin: EdgeInsets.all(32.0),
+                margin: EdgeInsets.only(bottom: 32.0),
                 alignment: Alignment.bottomCenter,
                 child: Text("build by SWARM",
                     style: TextStyle(color: AppColors.grey)))
