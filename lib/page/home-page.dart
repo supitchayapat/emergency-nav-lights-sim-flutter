@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             Container(
               margin: EdgeInsets.only(bottom: 28.0),
-              child: Text("Emergency Navigation\nLights",
+              child: Text("Tap a color to activate the corresponding lights",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 28.0)),
             ),
@@ -38,10 +38,11 @@ class HomePage extends StatelessWidget {
                 MaterialButton(
                     height: 80.0,
                     color: Colors.blue,
+                    color: Colors.white,
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LightPage(Colors.blue)),
+                        MaterialPageRoute(builder: (context) => LightPage(Colors.white)),
                       );
                     }),
                 MaterialButton(
@@ -54,7 +55,13 @@ class HomePage extends StatelessWidget {
                       );
                     }),
               ],
-            )
+            ),
+             Container(
+                    margin: EdgeInsets.only(top: 60.0),
+                    child: Text("This app is not a replacement for real physical certified navigation lights. You should always check your running nav lights on aircraft, ships, and spacecraft, and always carry spares.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 16.0)),
+                     )
           ],
         ),
       ),
