@@ -28,11 +28,11 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 MaterialButton(
                     height: 80.0,
-                    color: Colors.deepOrangeAccent[700],
+                    color: Color.fromARGB(255,255,34,49),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LightPage(Colors.deepOrangeAccent[700])), 
+                        MaterialPageRoute(builder: (context) => LightPage(Color.fromARGB(255,255,34,49))), 
                       );
                     }),
                 MaterialButton(
@@ -46,11 +46,11 @@ class HomePage extends StatelessWidget {
                     }),
                 MaterialButton(
                     height: 80.0,
-                    color: Colors.lightGreenAccent[700],
+                    color: Color.fromARGB(255,123,229,59),
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LightPage(Colors.lightGreenAccent[700])),
+                        MaterialPageRoute(builder: (context) => LightPage(Color.fromARGB(255,123,229,59))),
                       );
                     }),
               ],
