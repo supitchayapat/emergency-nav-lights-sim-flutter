@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:emergency_nav_lights_sim/app-constant.dart';
 import 'package:emergency_nav_lights_sim/page/home-page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,11 +18,14 @@ class SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     super.initState();
-    startTime();
+    if (bool.fromEnvironment("dart.vm.product")) {
+      startTime();
+    }
   }
 
   bool isNav = false;
-  void navigateToHome(){
+
+  void navigateToHome() {
     if (isNav) return;
 
     isNav = true;
@@ -36,19 +40,29 @@ class SplashPageState extends State<SplashPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: InkWell(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+        child: Stack(
           children: <Widget>[
-            Container(
-              margin: EdgeInsets.all(12.0),
-              child: Text("EMERGENCY\nNAV LIGHTS\nSIMULATOR",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 32.0, fontFamily: "AzoSansUber")),
-            ),
-            Image.asset("assets/images/boat.png"),
+            Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  margin: EdgeInsets.all(12.0),
+                  child: Text("EMERGENCY\nNAV LIGHTS\nSIMULATOR",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                          fontSize: 32.0,
+                          color: AppColors.dark,
+                          fontFamily: "AzoSansUber")),
+                ),
+                Image.asset("assets/images/boat.png"),
+              ],
+            )),
             Container(
                 margin: EdgeInsets.all(32.0),
-                child: Text("build by SWARM", style: TextStyle(color: Color.fromARGB(255, 155, 155, 155)),  textAlign: TextAlign.center)),
+                alignment: Alignment.bottomCenter,
+                child: Text("build by SWARM",
+                    style: TextStyle(color: AppColors.grey)))
           ],
         ),
         onTap: navigateToHome,

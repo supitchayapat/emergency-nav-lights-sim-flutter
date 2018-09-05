@@ -1,4 +1,5 @@
-import 'package:emergency_nav_lights_sim/page/light-page.dart';
+import 'package:emergency_nav_lights_sim/app-constant.dart';
+import 'package:emergency_nav_lights_sim/page/one-light-page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -13,7 +14,10 @@ class HomePage extends StatelessWidget {
               margin: EdgeInsets.only(bottom: 28.0),
               child: Text("Tap a color to activate the corresponding lights",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 28.0)),
+                  style: TextStyle(
+                      fontSize: 28.0,
+                      color: AppColors.dark,
+                      fontFamily: "AzoSansUber")),
             ),
             Container(
               margin: EdgeInsets.only(bottom: 16.0),
@@ -28,11 +32,12 @@ class HomePage extends StatelessWidget {
               children: <Widget>[
                 MaterialButton(
                     height: 80.0,
-                    color: Color.fromARGB(255,255,34,49),
+                    color: AppColors.red,
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LightPage(Color.fromARGB(255,255,34,49))), 
+                        MaterialPageRoute(
+                            builder: (context) => OneLightPage(AppColors.red)),
                       );
                     }),
                 MaterialButton(
@@ -41,26 +46,30 @@ class HomePage extends StatelessWidget {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LightPage(Colors.white)),
+                        MaterialPageRoute(
+                            builder: (context) => OneLightPage(Colors.white)),
                       );
                     }),
                 MaterialButton(
                     height: 80.0,
-                    color: Color.fromARGB(255,123,229,59),
+                    color: AppColors.green,
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LightPage(Color.fromARGB(255,123,229,59))),
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                OneLightPage(AppColors.green)),
                       );
                     }),
               ],
             ),
-             Container(
-                    margin: EdgeInsets.only(top: 60.0),
-                    child: Text("This app is not a replacement for real physical certified navigation lights. You should always check your running nav lights on aircraft, ships, and spacecraft, and always carry spares.",
+            Container(
+              margin: EdgeInsets.only(top: 60.0, right: 16.0, bottom: 16.0, left: 16.0),
+              child: Text(
+                  "This app is not a replacement for real physical certified navigation lights. You should always check your running nav lights on aircraft, ships, and spacecraft, and always carry spares.",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16.0)),
-                     )
+                  style: TextStyle(fontSize: 16.0, color: AppColors.grey)),
+            )
           ],
         ),
       ),

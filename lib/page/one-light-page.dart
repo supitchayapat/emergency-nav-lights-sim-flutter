@@ -3,20 +3,20 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class LightPage extends StatefulWidget {
-  LightPage(this.color);
+class OneLightPage extends StatefulWidget {
+  OneLightPage(this.color);
 
   final Color color;
 
   @override
-  LightPageState createState() {
-    return LightPageState(this.color);
+  State<OneLightPage> createState() {
+    return _LightPageState(this.color);
   }
 }
 
-class LightPageState extends State<LightPage>
+class _LightPageState extends State<OneLightPage>
     with SingleTickerProviderStateMixin {
-  LightPageState(this.color);
+  _LightPageState(this.color);
 
   final Color color;
 
@@ -81,9 +81,8 @@ class LightPageState extends State<LightPage>
   }
 
   void hide(){
-    Future.delayed(Duration(seconds: 3), () {
+    Timer(Duration(seconds: 3), () {
         controller.forward();
     });
   }
-
 }
