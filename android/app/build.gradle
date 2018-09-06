@@ -21,16 +21,25 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(rootProject.file("key.properties")))
+
 apply plugin: 'com.android.application'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
     compileSdkVersion 27
-
     lintOptions {
         disable 'InvalidPackage'
     }
-
     defaultConfig {
         applicationId "com.swarmnyc.emergencynavigationlights"
         minSdkVersion 16
@@ -39,15 +48,14 @@ android {
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-
     buildTypes {
-        debug{
+        debug {
             applicationIdSuffix ".dev"
             manifestPlaceholders = [appName: "Emergency Nav Lights Sim Dev", appShortName: "LS Dev"]
         }
         release {
             manifestPlaceholders = [appName: "Emergency Nav Lights Sim", appShortName: "Light Sim"]
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
 
             minifyEnabled true
             useProguard true
