@@ -43,7 +43,7 @@ android {
     buildTypes {
         debug{
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "Emergency Nav Lights Sim Dev", appShortName: "Light Sim Dev"]
+            manifestPlaceholders = [appName: "Emergency Nav Lights Sim Dev", appShortName: "LS Dev"]
         }
         release {
             manifestPlaceholders = [appName: "Emergency Nav Lights Sim", appShortName: "Light Sim"]
