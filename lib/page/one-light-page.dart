@@ -22,8 +22,6 @@ class _LightPageState extends State<OneLightPage> with SingleTickerProviderState
   Animation<Offset> animation;
   AnimationController controller;
 
-  bool isShown = false;
-
   @override
   void initState() {
     super.initState();
@@ -40,6 +38,7 @@ class _LightPageState extends State<OneLightPage> with SingleTickerProviderState
   @override
   void dispose() {
     controller.dispose();
+    controller = null;
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top, SystemUiOverlay.bottom]);
     super.dispose();
   }
@@ -77,7 +76,7 @@ class _LightPageState extends State<OneLightPage> with SingleTickerProviderState
 
   void hide() {
     Timer(Duration(seconds: 2), () {
-      controller.forward();
+      controller?.forward();
     });
   }
 }

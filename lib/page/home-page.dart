@@ -107,7 +107,14 @@ class HomePage extends StatelessWidget {
       boxMargin = box.maxWidth / 5.0;
     } else {
       // size from width
-      boxWidth = size.width / 2.6;
+      if (size.height / size.width < 1.4) {
+        // for pad, like 4:3
+        boxWidth = size.width / 3;
+      }else{
+        // for phone
+        boxWidth = size.width / 2.6;
+      }
+
       boxHeight = boxWidth * 1.169;
       boxMargin = box.maxWidth / 2.0 - boxWidth - 15;
     }
