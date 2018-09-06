@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:emergency_nav_lights_sim/app-constant.dart';
 import 'package:emergency_nav_lights_sim/page/home-page.dart';
 import 'package:flutter/material.dart';
@@ -38,34 +39,43 @@ class SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: InkWell(
-        child: Stack(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(bottom: 12.0),
-                  child: Text("EMERGENCY\nNAV LIGHTS\nSIMULATOR",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 32.0,
-                          color: AppColors.dark,
-                          fontFamily: "AzoSansUber")),
-                ),
-                Image.asset("assets/images/boat.png"),
-              ],
-            ),
-            Container(
-                margin: EdgeInsets.only(bottom: 32.0),
-                alignment: Alignment.bottomCenter,
-                child: Text("build by SWARM",
-                    style: TextStyle(color: AppColors.grey)))
-          ],
-        ),
-        onTap: navigateToHome,
-      ),
-    );
+        backgroundColor: Colors.white,
+        body: SafeArea(
+            child: InkWell(
+          child: Flex(
+            direction: Axis.vertical,
+            children: [
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                    alignment: Alignment.bottomCenter,
+                    margin: EdgeInsets.all(16.0),
+                    child: Text("EMERGENCY NAV LIGHTS SIMULATOR",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 32.0,
+                            color: AppColors.dark,
+                            fontFamily: "AzoSansUber")),
+                  )),
+              Expanded(
+                flex: 2,
+                child: LayoutBuilder(builder: (_, box) {
+                  var size = min<double>(box.maxHeight, box.maxWidth);
+
+                  return Image.asset("assets/images/boat.png",
+                      width: size, height: size);
+                }),
+              ),
+              Expanded(
+                  flex: 1,
+                  child: Container(
+                      margin: EdgeInsets.all(32.0),
+                      alignment: Alignment.bottomCenter,
+                      child: Text("build by SWARM",
+                          style: TextStyle(color: AppColors.grey))))
+            ],
+          ),
+          onTap: navigateToHome,
+        )));
   }
 }

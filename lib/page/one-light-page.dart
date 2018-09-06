@@ -14,8 +14,7 @@ class OneLightPage extends StatefulWidget {
   }
 }
 
-class _LightPageState extends State<OneLightPage>
-    with SingleTickerProviderStateMixin {
+class _LightPageState extends State<OneLightPage> with SingleTickerProviderStateMixin {
   _LightPageState(this.color);
 
   final Color color;
@@ -31,11 +30,9 @@ class _LightPageState extends State<OneLightPage>
 
     SystemChrome.setEnabledSystemUIOverlays([]);
 
-    controller = AnimationController(
-        duration: Duration(milliseconds: 200), vsync: this);
+    controller = AnimationController(duration: Duration(milliseconds: 200), vsync: this);
 
-    animation = Tween(begin: Offset(0.0, 0.0), end: Offset(0.0, -1.0))
-        .animate(controller);
+    animation = Tween(begin: Offset(0.0, 0.0), end: Offset(0.0, -1.5)).animate(controller);
 
     this.hide();
   }
@@ -43,8 +40,7 @@ class _LightPageState extends State<OneLightPage>
   @override
   void dispose() {
     controller.dispose();
-    SystemChrome.setEnabledSystemUIOverlays(
-        [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.top, SystemUiOverlay.bottom]);
     super.dispose();
   }
 
@@ -52,22 +48,21 @@ class _LightPageState extends State<OneLightPage>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: this.color,
-      body: Column(
+      body: SafeArea(child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           SlideTransition(
             position: animation,
             child: Container(
-              margin: EdgeInsets.only(top: 25.0, left: 12.0),
+              margin: EdgeInsets.all(12.0),
               child: BackButton(),
             ),
           ),
           Expanded(
-            child: MaterialButton(
-                minWidth: double.infinity, onPressed: showBackButton),
+            child: GestureDetector(onTap: showBackButton),
           ),
         ],
-      ),
+      ))
     );
   }
 
@@ -80,9 +75,9 @@ class _LightPageState extends State<OneLightPage>
     });
   }
 
-  void hide(){
-    Timer(Duration(seconds: 3), () {
-        controller.forward();
+  void hide() {
+    Timer(Duration(seconds: 2), () {
+      controller.forward();
     });
   }
 }
