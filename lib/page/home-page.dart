@@ -196,7 +196,7 @@ class HomePage extends StatelessWidget {
               alignment: Alignment.bottomCenter,
               margin: EdgeInsets.all(16.0),
               child: Text(
-                  "This app is not a replacement for real physical certified navigation lights. You should always check your running nav lights on aircraft, ships, and spacecraft, and always carry spares.",
+                  "This app is not a replacement for certified navigation lights. You should always check your running lights on aircraft, ships, and spacecraft, and always carry spares. This app DOES NOT meet 33 CFR 183.810 - Navigation light certification requirements and is NOT US Coast Guard Approved.",
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16.0, color: AppColors.grey)),
             ))
