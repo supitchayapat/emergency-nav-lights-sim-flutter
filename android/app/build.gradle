@@ -51,10 +51,10 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix ".dev"
-            manifestPlaceholders = [appName: "Emergency Nav Lights Sim Dev", appShortName: "LS Dev"]
+            manifestPlaceholders = [appName: "Emergency Nav Lights Sim Dev", appShortName: "⛵ Dev"]
         }
         release {
-            manifestPlaceholders = [appName: "Emergency Nav Lights Sim", appShortName: "Light Sim"]
+            manifestPlaceholders = [appName: "Emergency Nav Lights Sim", appShortName: "⛵ Nav Lights"]
             signingConfig signingConfigs.release
 
             minifyEnabled true
