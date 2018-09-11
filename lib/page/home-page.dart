@@ -44,6 +44,8 @@ class HomePage extends StatelessWidget {
   Triangle whiteTriangle;
   Triangle greenTriangle;
 
+  double textScale;
+
   void navigateToOneLight(context, color) {
     Navigator.push(
       context,
@@ -53,17 +55,22 @@ class HomePage extends StatelessWidget {
 
   void initTriangles() {
     var red = getRect(redTriangleKey);
-    redTriangle = Triangle(Point(red.left, red.top), Point(red.right, red.top), Point(red.bottomCenter.dx, red.bottom));
+    redTriangle = Triangle(Point(red.left, red.top), Point(red.right, red.top),
+        Point(red.bottomCenter.dx, red.bottom));
 
     debugPrint("red:$redTriangle");
 
     var white = getRect(whiteTriangleKey);
-    whiteTriangle = Triangle(Point(white.topCenter.dx, white.top), Point(white.right, white.bottom), Point(white.left, white.bottom));
+    whiteTriangle = Triangle(Point(white.topCenter.dx, white.top),
+        Point(white.right, white.bottom), Point(white.left, white.bottom));
 
     debugPrint("white:$whiteTriangle");
 
     var green = getRect(greenTriangleKey);
-    greenTriangle = Triangle(Point(green.left, green.top), Point(green.right, green.top), Point(green.bottomCenter.dx, green.bottom));
+    greenTriangle = Triangle(
+        Point(green.left, green.top),
+        Point(green.right, green.top),
+        Point(green.bottomCenter.dx, green.bottom));
 
     debugPrint("green:$greenTriangle");
   }
@@ -102,7 +109,7 @@ class HomePage extends StatelessWidget {
     var boxMargin;
     if (isHorizontal) {
       // size from height
-      boxHeight = box.maxHeight - 60; // 60 is text
+      boxHeight = box.maxHeight - 50; // 60 is text
       boxWidth = boxHeight * 1.169;
       boxMargin = box.maxWidth / 5.0;
     } else {
@@ -110,7 +117,7 @@ class HomePage extends StatelessWidget {
       if (size.height / size.width < 1.4) {
         // for pad, like 4:3
         boxWidth = size.width / 3;
-      }else{
+      } else {
         // for phone
         boxWidth = size.width / 2.6;
       }
@@ -119,33 +126,38 @@ class HomePage extends StatelessWidget {
       boxMargin = box.maxWidth / 2.0 - boxWidth - 15;
     }
 
-    return Stack(overflow: Overflow.visible, alignment: Alignment.topLeft, children: [
+    return Stack(
+        overflow: Overflow.visible,
+        alignment: Alignment.topLeft,
+        children: [
       Positioned(
           left: boxMargin,
           child: Column(
             children: [
               SizedBox(
-                height: 30.0,
+                    height: 25.0,
                 child: Text(
                   "Port",
-                  style: TextStyle(fontSize: 18.0, color: AppColors.grey),
+                      style: TextStyle(fontSize: 16.0, color: AppColors.grey),
                 ),
               ),
-              SvgPicture.asset("assets/images/redTriangle.svg", key: redTriangleKey, width: boxWidth, height: boxHeight),
-              SizedBox(height: 30.0)
+                  SvgPicture.asset("assets/images/redTriangle.svg",
+                      key: redTriangleKey, width: boxWidth, height: boxHeight),
+                  SizedBox(height: 25.0)
             ],
           )),
       Positioned(
         child: Column(children: [
-          SizedBox(height: 30.0),
-          SvgPicture.asset("assets/images/whiteTriangle.svg", key: whiteTriangleKey, width: boxWidth, height: boxHeight),
+              SizedBox(height: 25.0),
+              SvgPicture.asset("assets/images/whiteTriangle.svg",
+                  key: whiteTriangleKey, width: boxWidth, height: boxHeight),
           SizedBox(
-            height: 30.0,
+                height: 25.0,
             child: Align(
               alignment: Alignment.bottomCenter,
               child: Text(
                 "Stern",
-                style: TextStyle(fontSize: 18.0, color: AppColors.grey),
+                    style: TextStyle(fontSize: 16.0, color: AppColors.grey),
               ),
             ),
           )
@@ -156,14 +168,15 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(
-              height: 30.0,
+                  height: 25.0,
               child: Text(
                 "Starboard",
-                style: TextStyle(fontSize: 18.0, color: AppColors.grey),
+                    style: TextStyle(fontSize: 16.0, color: AppColors.grey),
               ),
             ),
-            SvgPicture.asset("assets/images/greenTriangle.svg", key: greenTriangleKey, width: boxWidth, height: boxHeight),
-            SizedBox(height: 30.0)
+                SvgPicture.asset("assets/images/greenTriangle.svg",
+                    key: greenTriangleKey, width: boxWidth, height: boxHeight),
+                SizedBox(height: 25.0)
           ],
         ),
       )
@@ -172,6 +185,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    this.textScale = getTextScale(context);
+
     var body = Flex(
       direction: Axis.vertical,
       children: [
@@ -181,7 +196,11 @@ class HomePage extends StatelessWidget {
               alignment: Alignment.center,
               margin: EdgeInsets.all(16.0),
               child: Text("Tap a color to activate the corresponding lights",
-                  textAlign: TextAlign.center, style: TextStyle(fontSize: 32.0, color: AppColors.dark, fontFamily: "AzoSansUber")),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 32.0 * textScale,
+                      color: AppColors.dark,
+                      fontFamily: "AzoSansUber")),
             )),
         Expanded(
             flex: 2,
@@ -198,7 +217,7 @@ class HomePage extends StatelessWidget {
               child: Text(
                   "This app is not a replacement for certified navigation lights. You should always check your running lights on aircraft, ships, and spacecraft, and always carry spares. This app DOES NOT meet 33 CFR 183.810 - Navigation light certification requirements and is NOT US Coast Guard Approved.",
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 16.0, color: AppColors.grey)),
+                  style: TextStyle(fontSize: 14.0 * textScale, color: AppColors.grey)),
             ))
       ],
     );
@@ -228,7 +247,10 @@ bool pointInTriangle(Point point, Triangle triangle) {
       dot12 = v1x * v2x + v1y * v2y;
 
   // Compute barycentric coordinates
-  var b = (dot00 * dot11 - dot01 * dot01), inv = b == 0 ? 0 : (1 / b), u = (dot11 * dot02 - dot01 * dot12) * inv, v = (dot00 * dot12 - dot01 * dot02) * inv;
+  var b = (dot00 * dot11 - dot01 * dot01),
+      inv = b == 0 ? 0 : (1 / b),
+      u = (dot11 * dot02 - dot01 * dot12) * inv,
+      v = (dot00 * dot12 - dot01 * dot02) * inv;
 
   return u >= 0 && v >= 0 && (u + v < 1);
 }
