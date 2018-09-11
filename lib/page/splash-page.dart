@@ -53,7 +53,7 @@ class SplashPageState extends State<SplashPage> {
                     child: Text("EMERGENCY NAV LIGHTS SIMULATOR",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            fontSize: 32.0,
+                            fontSize: 32.0 * getTextScale(context),
                             color: AppColors.dark,
                             fontFamily: "AzoSansUber")),
                   )),
