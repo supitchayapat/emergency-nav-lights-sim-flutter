@@ -1,8 +1,3 @@
-# Emergency NAV Ligths SIMULATOR
+# NAV Lights SIMULATOR
 
-A new Flutter project of Emergency NAV Ligths SIMULATOR.
-
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+Navigation Lights SIMULATOR and it it based on [Flutter](https://flutter.io/).

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    title: 'Emergency NAV Ligths SIMULATOR',
+    title: 'NAVIGATION LIGHTS SIMULATOR',
     home: SplashPage(),
   ));
 }

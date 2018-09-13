@@ -50,7 +50,7 @@ class SplashPageState extends State<SplashPage> {
                   child: Container(
                     alignment: Alignment.bottomCenter,
                     margin: EdgeInsets.all(16.0),
-                    child: Text("EMERGENCY NAV LIGHTS SIMULATOR",
+                    child: Text("NAVIGATION LIGHTS SIMULATOR",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 32.0 * getTextScale(context),
