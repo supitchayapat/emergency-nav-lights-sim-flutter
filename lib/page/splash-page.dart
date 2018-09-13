@@ -71,7 +71,7 @@ class SplashPageState extends State<SplashPage> {
                   child: Container(
                       margin: EdgeInsets.all(32.0),
                       alignment: Alignment.bottomCenter,
-                      child: Text("build by SWARM",
+                      child: Text("built by SWARM",
                           style: TextStyle(color: AppColors.grey))))
             ],
           ),
